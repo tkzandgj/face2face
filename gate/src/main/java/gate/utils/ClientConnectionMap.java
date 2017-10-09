@@ -42,6 +42,7 @@ public class ClientConnectionMap {
         //fixme 之后重复登录需要踢掉原来的连接
         ClientConnection conn = new ClientConnection(c);
 
+        // 判断是否已经登录过
         if(ClientConnectionMap.allClientMap.putIfAbsent(conn.getNetId(), conn) != null) {
             logger.error("Duplicated netid");
         }
