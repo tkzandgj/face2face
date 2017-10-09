@@ -21,8 +21,15 @@ public class GateServerHandler extends SimpleChannelInboundHandler<Message> {
         ClientConnectionMap.addClientConnection(ctx);
     }
 
+    /**
+     * 读取客户端发送过来的消息
+     * @param channelHandlerContext
+     * @param message
+     * @throws Exception
+     */
     @Override
     protected void channelRead0(ChannelHandlerContext channelHandlerContext, Message message) throws Exception {
+        // 获取客户端的连接
         ClientConnection conn = ClientConnectionMap.getClientConnection(channelHandlerContext);
         ClientMessage.processTransferHandler(message, conn);
         //TODO 最好加一个通知客户端收到消息的通知
