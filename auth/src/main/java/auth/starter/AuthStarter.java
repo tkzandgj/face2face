@@ -20,6 +20,7 @@ import java.io.File;
 
 /**
  * Created by Qzy on 2016/1/28.
+ * 负责登录认证
  */
 
 public class AuthStarter {
@@ -109,12 +110,12 @@ public class AuthStarter {
             printHelpMessage();
             System.exit(0);
         }
-        if( commandLine.hasOption('l') ) {
+        /*if( commandLine.hasOption('l') ) {
             log = new File(commandLine.getOptionValue('l'));
         } else {
             printHelpMessage();
             System.exit(0);
-        }
+        }*/
     }
 
     static void printHelpMessage() {
