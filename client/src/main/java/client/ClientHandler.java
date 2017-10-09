@@ -37,6 +37,12 @@ public class ClientHandler extends SimpleChannelInboundHandler<Message> {
         sendCLogin(ctx, _userId, passwd);
     }
 
+    /**
+     * 发送注册信息
+     * @param ctx
+     * @param userid
+     * @param passwd
+     */
     void sendCRegister(ChannelHandlerContext ctx, String userid, String passwd) {
         Auth.CRegister.Builder cb = Auth.CRegister.newBuilder();
         cb.setUserid(userid);
@@ -47,6 +53,12 @@ public class ClientHandler extends SimpleChannelInboundHandler<Message> {
         logger.info("send CRegister userid:{}", _userId);
     }
 
+    /**
+     * 发送登录信息
+     * @param ctx
+     * @param userid
+     * @param passwd
+     */
     void sendCLogin(ChannelHandlerContext ctx, String userid, String passwd) {
         Auth.CLogin.Builder loginInfo = Auth.CLogin.newBuilder();
         loginInfo.setUserid(userid);
@@ -59,6 +71,13 @@ public class ClientHandler extends SimpleChannelInboundHandler<Message> {
         logger.info("send CLogin userid:{}", _userId);
     }
 
+
+    /**
+     * 处理服务端返回的消息
+     * @param channelHandlerContext
+     * @param msg
+     * @throws Exception
+     */
     @Override
     protected void channelRead0(ChannelHandlerContext channelHandlerContext, Message msg) throws Exception {
         logger.info("received message: {}", msg.getClass());
