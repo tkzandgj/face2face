@@ -30,6 +30,12 @@ public class GateAuthConnectionHandler extends SimpleChannelInboundHandler<Messa
         sendGreet2Auth();
     }
 
+    /**
+     * gate读取auth返回的消息
+     * @param channelHandlerContext
+     * @param message
+     * @throws Exception
+     */
     @Override
     protected void channelRead0(ChannelHandlerContext channelHandlerContext, Message message) throws Exception {
         Internal.GTransfer gtf = (Internal.GTransfer) message;
