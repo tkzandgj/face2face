@@ -1,6 +1,7 @@
 package gate;
 /**
  * Created by Qzy on 2016/1/28.
+ * gate作为一个服务端，接收client的连接
  */
 import gate.handler.GateServerHandler;
 import io.netty.channel.*;
