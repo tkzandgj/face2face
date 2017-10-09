@@ -13,6 +13,7 @@ import protobuf.code.PacketEncoder;
 
 /**
  * Created by Dell on 2016/2/2.
+ * gate作为一个客户端，发送连接请求，去连接logic服务
  */
 public class GateLogicConnection {
     private static final Logger logger = LoggerFactory.getLogger(GateLogicConnection.class);
@@ -31,7 +32,7 @@ public class GateLogicConnection {
                         pipeline.addLast("MessageDecoder", new PacketDecoder());
                         pipeline.addLast("MessageEncoder", new PacketEncoder());
 
-                        pipeline.addLast("GateLogicConnectionHandler", new GateLogicConnectionHandler());  //logic -> gate
+                        pipeline.addLast("GateLogicConnectionHandler", new GateLogicConnectionHandler());  //gate -> logic
                     }
                 });
 
