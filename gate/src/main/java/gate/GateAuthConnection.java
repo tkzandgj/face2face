@@ -13,6 +13,7 @@ import protobuf.code.PacketEncoder;
 
 /**
  * Created by Qzy on 2016/1/28.
+ * gate作为客户端，发送连接请求,去连接auth服务
  */
 public class GateAuthConnection {
     private static final Logger logger = LoggerFactory.getLogger(GateAuthConnection.class);
@@ -31,7 +32,7 @@ public class GateAuthConnection {
 
                         pipeline.addLast("MessageDecoder", new PacketDecoder());
                         pipeline.addLast("MessageEncoder", new PacketEncoder());
-                        pipeline.addLast("GateAuthConnectionHandler", new GateAuthConnectionHandler());  //Auth -> gate
+                        pipeline.addLast("GateAuthConnectionHandler", new GateAuthConnectionHandler());  //gate -> auth
                     }
                 });
 
