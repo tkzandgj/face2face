@@ -29,8 +29,15 @@ public class GateLogicConnectionHandler extends SimpleChannelInboundHandler<Mess
         //向logic发送Greet
         sendGreet2Logic();
     }
+
+    /**
+     * gate读取Logic返回的消息
+     * @param channelHandlerContext
+     * @param message
+     * @throws Exception
+     */
     @Override
-        protected void channelRead0(ChannelHandlerContext channelHandlerContext, Message message) throws Exception {
+    protected void channelRead0(ChannelHandlerContext channelHandlerContext, Message message) throws Exception {
 
     }
 
