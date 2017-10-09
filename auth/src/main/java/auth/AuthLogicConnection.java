@@ -15,6 +15,7 @@ import protobuf.code.PacketEncoder;
 
 /**
  * Created by win7 on 2016/3/5.
+ * auth作为一个客户端，去发送连接请求，连接logic服务
  */
 public class AuthLogicConnection {
     private static final Logger logger = LoggerFactory.getLogger(AuthLogicConnection.class);
