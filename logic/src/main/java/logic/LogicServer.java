@@ -44,6 +44,7 @@ public class LogicServer {
 
         bindConnectionOptions(bootstrap);
 
+        // 监听客户端的连接事件    记录相对应的日志
         bootstrap.bind(new InetSocketAddress(port)).addListener(new ChannelFutureListener() {
             @Override
             public void operationComplete(ChannelFuture future)
