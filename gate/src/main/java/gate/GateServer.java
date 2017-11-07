@@ -61,12 +61,12 @@ public class GateServer {
 
     protected static void bindConnectionOptions(ServerBootstrap bootstrap) {
 
-        bootstrap.option(ChannelOption.SO_BACKLOG, 1024);
-        bootstrap.childOption(ChannelOption.SO_LINGER, 0);
-        bootstrap.childOption(ChannelOption.TCP_NODELAY, true);
+        bootstrap.option(ChannelOption.SO_BACKLOG, 1024);        // 初始化服务端的可连接队列
+        bootstrap.childOption(ChannelOption.SO_LINGER, 0);       // 阻塞close()方法的调用时间，直到数据完全发送
+        bootstrap.childOption(ChannelOption.TCP_NODELAY, true);  // 禁用TCP的NoDelay算法
 
-        bootstrap.childOption(ChannelOption.SO_REUSEADDR, true); //调试用
-        bootstrap.childOption(ChannelOption.SO_KEEPALIVE, true); //心跳机制暂时使用TCP选项，之后再自己实现
+        bootstrap.childOption(ChannelOption.SO_REUSEADDR, true); // 调试用   多个服务复用同一个端口
+        bootstrap.childOption(ChannelOption.SO_KEEPALIVE, true); // 心跳机制暂时使用TCP选项，之后再自己实现
 
     }
 }
