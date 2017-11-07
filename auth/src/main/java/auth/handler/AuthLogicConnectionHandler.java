@@ -23,6 +23,11 @@ public class AuthLogicConnectionHandler extends SimpleChannelInboundHandler<Mess
 
     private static ChannelHandlerContext _authLogicConnection;
 
+    /**
+     * 当auth与logic建立连接的时候   想logic发送消息
+     * @param ctx
+     * @throws Exception
+     */
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         setAuthLogicConnecttion(ctx);
@@ -32,6 +37,12 @@ public class AuthLogicConnectionHandler extends SimpleChannelInboundHandler<Mess
         sendGreet2Logic();
     }
 
+    /**
+     * 读取Logic发送的消息
+     * @param channelHandlerContext
+     * @param message
+     * @throws Exception
+     */
     @Override
     protected void channelRead0(ChannelHandlerContext channelHandlerContext, Message message) throws Exception {
         Internal.GTransfer gt = (Internal.GTransfer) message;
