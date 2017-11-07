@@ -22,6 +22,12 @@ public class GateAuthConnectionHandler extends SimpleChannelInboundHandler<Messa
     public static ChannelHandlerContext getGateAuthConnection() {
         return _gateAuthConnection;
     }
+
+    /**
+     * 当gate与auth建立连接的时候    发送消息
+     * @param ctx
+     * @throws Exception
+     */
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         _gateAuthConnection = ctx;
@@ -44,6 +50,9 @@ public class GateAuthConnectionHandler extends SimpleChannelInboundHandler<Messa
 
         ByteBuf out = Utils.pack2Client(cmd);
 
+        /**
+         * 获取连接
+         */
         ClientConnectionMap.getClientConnection(gtf.getNetId()).getCtx().writeAndFlush(out);
     }
 
