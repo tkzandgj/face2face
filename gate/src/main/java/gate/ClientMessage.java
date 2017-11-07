@@ -58,6 +58,11 @@ public class ClientMessage {
         }
     }
 
+    /**
+     * 把client的请求通过gate服务转给logic服务
+     * @param msg
+     * @param conn
+     */
     public static void transfer2Logic(Message msg, ClientConnection conn) {
         ByteBuf byteBuf = null;
         if(conn.getUserId() == null ) {
@@ -72,6 +77,11 @@ public class ClientMessage {
         GateLogicConnectionHandler.getGatelogicConnection().writeAndFlush(byteBuf);
     }
 
+    /**
+     * 把client的请求通过gate服务转发给auth服务
+     * @param msg
+     * @param conn
+     */
     public static void transfer2Auth(Message msg, ClientConnection conn) {
         ByteBuf byteBuf = null;
         if(msg instanceof Auth.CLogin) {
