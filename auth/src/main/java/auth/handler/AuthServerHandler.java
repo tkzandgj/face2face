@@ -40,6 +40,12 @@ public class AuthServerHandler extends SimpleChannelInboundHandler<Message> {
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
     }
 
+    /**
+     * 读取gate服务发送的消息
+     * @param channelHandlerContext
+     * @param message
+     * @throws Exception
+     */
     @Override
     protected void channelRead0(ChannelHandlerContext channelHandlerContext, Message message) throws Exception {
         Internal.GTransfer gt = (Internal.GTransfer) message;
