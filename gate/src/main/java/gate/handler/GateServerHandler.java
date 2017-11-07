@@ -15,6 +15,11 @@ import org.slf4j.LoggerFactory;
 public class GateServerHandler extends SimpleChannelInboundHandler<Message> {
     private static final Logger logger = LoggerFactory.getLogger(GateServerHandler.class);
 
+    /**
+     * 服务端与客户端建立连接的时候去调用
+     * @param ctx
+     * @throws Exception
+     */
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         //保存客户端连接
@@ -35,8 +40,15 @@ public class GateServerHandler extends SimpleChannelInboundHandler<Message> {
         //TODO 最好加一个通知客户端收到消息的通知
     }
 
+    /**
+     * 服务端与客户端断开连接的时候去调用
+     * @param ctx
+     */
     @Override
     public void channelInactive(ChannelHandlerContext ctx) {
+        /**
+         * 删除连接
+         */
         ClientConnectionMap.removeClientConnection(ctx);
     }
 }
