@@ -15,12 +15,6 @@ import java.util.concurrent.atomic.AtomicLong;
 
 public class ClientConnection {
     private static final AtomicLong netidGenerator = new AtomicLong(0);
-    ClientConnection(ChannelHandlerContext c) {
-        _netId = netidGenerator.incrementAndGet();
-        _ctx = c;
-        _ctx.attr(ClientConnection.NETID).set(_netId);
-    }
-
     private static final Logger logger = LoggerFactory.getLogger(ClientConnection.class);
 
     public static AttributeKey<ThreeDES> ENCRYPT = AttributeKey.valueOf("encrypt");
@@ -29,6 +23,17 @@ public class ClientConnection {
     private String _userId;
     private long _netId;
     private ChannelHandlerContext _ctx;
+
+    ClientConnection(ChannelHandlerContext c) {
+        _netId = netidGenerator.incrementAndGet();
+        _ctx = c;
+        /**
+         * 把_netId存储到ChannelHandlerContext关联的AttributeMap中
+         * 当前的ChannelHandlerContext中的AttributeMap，在别的
+         * ChannelHandlerContext中是访问不到的
+         */
+        _ctx.attr(ClientConnection.NETID).set(_netId);
+    }
 
     public long getNetId() {
         return _netId;
@@ -47,6 +52,7 @@ public class ClientConnection {
     }
 
     public void setCtx(ChannelHandlerContext ctx) {_ctx = ctx;}
+
     public ChannelHandlerContext getCtx() {
         return _ctx;
     }
